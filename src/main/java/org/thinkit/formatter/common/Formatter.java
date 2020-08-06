@@ -14,9 +14,11 @@
 
 package org.thinkit.formatter.common;
 
+import lombok.NonNull;
+
 /**
  * 整形処理を行うフォーマッターを抽象化したインターフェースです。 {@link Formatter} インターフェースを実装する具象クラスは
- * {@link Formatter#format()} メソッドを必ず実装してください。
+ * {@link Formatter#format(String)} メソッドを必ず実装してください。
  *
  * @author Kato Shinya
  * @since 1.0
@@ -27,9 +29,12 @@ package org.thinkit.formatter.common;
 public interface Formatter {
 
     /**
-     * 文字列を整形し返却します。
+     * 引数として渡された {@code unformatted} に格納された文字列を整形し返却します。
      *
+     * @param unformatted 整形されていない文字列
      * @return 整形された文字列
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public String format();
+    public String format(@NonNull final String unformatted);
 }
