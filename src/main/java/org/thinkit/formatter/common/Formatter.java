@@ -24,7 +24,7 @@ import lombok.NonNull;
  * @since 1.0
  * @version 1.0
  *
- * @see #format()
+ * @see #format(String)
  */
 public interface Formatter {
 
