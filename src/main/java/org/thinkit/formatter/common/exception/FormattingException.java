@@ -21,7 +21,7 @@ package org.thinkit.formatter.common.exception;
  * @since 1.0
  * @version 1.0
  */
-public final class FormatHandlingException extends RuntimeException {
+public final class FormattingException extends RuntimeException {
 
     /**
      * serialVersionUID
@@ -29,19 +29,19 @@ public final class FormatHandlingException extends RuntimeException {
     private static final long serialVersionUID = 0L;
 
     /**
-     * Constructs an <code>FormatHandlingException</code> with no detail message.
+     * Constructs an <code>FormattingException</code> with no detail message.
      */
-    public FormatHandlingException() {
+    public FormattingException() {
         super();
     }
 
     /**
-     * Constructs an <code>FormatHandlingException</code> with the specified detail
+     * Constructs an <code>FormattingException</code> with the specified detail
      * message.
      *
      * @param s the detail message.
      */
-    public FormatHandlingException(String s) {
+    public FormattingException(String s) {
         super(s);
     }
 
@@ -59,7 +59,7 @@ public final class FormatHandlingException extends RuntimeException {
      *                unknown.)
      * @since 1.0
      */
-    public FormatHandlingException(String message, Throwable cause) {
+    public FormattingException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -76,7 +76,7 @@ public final class FormatHandlingException extends RuntimeException {
      *              unknown.)
      * @since 1.0
      */
-    public FormatHandlingException(Throwable cause) {
+    public FormattingException(Throwable cause) {
         super(cause);
     }
 }
