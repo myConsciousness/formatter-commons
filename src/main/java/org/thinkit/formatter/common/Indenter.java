@@ -31,7 +31,7 @@ public interface Indenter {
      *
      * @return 自分自身のインスタンス
      */
-    public Indenter incremenet();
+    public Indenter increment();
 
     /**
      * インデント数をデクリメントします。
