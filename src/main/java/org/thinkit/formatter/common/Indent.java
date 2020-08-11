@@ -50,8 +50,6 @@ public final class Indent implements Indentable {
      * デフォルトコンストラクタ
      */
     private Indent() {
-        this.indent = Indentation.getIndentTabs();
-        this.indentFactor = 0;
     }
 
     /**
@@ -59,7 +57,7 @@ public final class Indent implements Indentable {
      *
      * @return {@link Indent} クラスの新しいインスタンス
      */
-    public static Indent of() {
+    private static Indent of() {
         return new Indent();
     }
 
