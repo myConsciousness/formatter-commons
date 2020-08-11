@@ -44,9 +44,16 @@ public interface Indentable {
     public Indentable decrement();
 
     /**
-     * インデント数に応じた改行コードを生成し返却します。
+     * インデント数分の空白またはタブを返却します。
      *
-     * @return インデント数に応じた改行コード
+     * @return インデント数分の {@code " "} または {@code "¥t"}
      */
-    public String newline();
+    public String getIndent();
+
+    /**
+     * インデントファクターを返却します。
+     *
+     * @return インデントファクター
+     */
+    public int getIndentFactor();
 }
