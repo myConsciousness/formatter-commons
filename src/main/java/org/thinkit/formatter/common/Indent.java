@@ -14,7 +14,10 @@
 
 package org.thinkit.formatter.common;
 
+import org.thinkit.common.Precondition;
 import org.thinkit.common.catalog.Indentation;
+import org.thinkit.common.exception.IllegalNumberFoundException;
+import org.thinkit.formatter.common.catalog.IndentType;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,17 +50,7 @@ public final class Indent implements Indentable {
      * デフォルトコンストラクタ
      */
     private Indent() {
-        this.indent = Indentation.getIndentSpaces();
-        this.indentFactor = 0;
-    }
-
-    /**
-     * コンストラクタ
-     *
-     * @param indent インデント数
-     */
-    private Indent(int indent) {
-        this.indent = Indentation.getIndentSpaces(indent);
+        this.indent = Indentation.getIndentTabs();
         this.indentFactor = 0;
     }
 
@@ -71,13 +64,86 @@ public final class Indent implements Indentable {
     }
 
     /**
-     * 引数として指定された {@code indent} の数値に応じた {@link Indent} クラスの新しいインスタンスを生成し返却します。
+     * 各設定値に基づいて {@link Indent} クラスの新しいインスタンスを生成するビルダークラスです。
      *
-     * @param indent インデント数
-     * @return {@link Indent} クラスの新しいインスタンス
+     * @author Kato Shinya
+     * @since 1.0
+     * @version 1.0
      */
-    public static Indent of(int indent) {
-        return new Indent(indent);
+    public static class Builder {
+
+        /**
+         * インデント数
+         */
+        private int indent = 1;
+
+        /**
+         * インデントタイプ
+         */
+        private IndentType indentType = IndentType.TAB;
+
+        /**
+         * インデント数を設定します。インデント数は正数を指定してください。 {@link #withIndent(int)}
+         * メソッドに引数として負数が渡された場合は {@link IllegalNumberFoundException} が必ず実行時に発生します。
+         * <p>
+         * この {@link #withIndent(int)}
+         * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
+         *
+         * @param indent インデント数
+         * @return 自分自身のインスタンス
+         *
+         * @throws IllegalNumberFoundException 引数として渡された {@code indent} が負数の場合
+         */
+        public Builder withIndent(int indent) {
+            Precondition.requirePositive(indent);
+            this.indent = indent;
+            return this;
+        }
+
+        /**
+         * インデントタイプを空白に設定します。
+         * <p>
+         * この {@link #toIndentSpace()}
+         * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
+         *
+         * @return 自分自身のインスタンス
+         */
+        public Builder toIndentSpace() {
+            this.indentType = IndentType.SPACE;
+            return this;
+        }
+
+        /**
+         * インデントタイプをタブに設定します。
+         * <p>
+         * この {@link #toIndentTab()} メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
+         *
+         * @return 自分自身のインスタンス
+         */
+        public Builder toIndentTab() {
+            this.indentType = IndentType.TAB;
+            return this;
+        }
+
+        /**
+         * {@link #withIndent(int)} 、 {@link #toIndentSpace()} 、 {@link #toIndentTab()}
+         * メソッドで指定された値を基に {@link Indent} クラスの新しいインスタンスを生成し返却します。各設定メソッドを呼び出さずに
+         * {@link #build()} メソッドを呼び出した場合は初期値が優先的に使用されます。
+         *
+         * @return {@link Indent} クラスの新しいインスタンス
+         */
+        public Indentable build() {
+            final Indent indent = Indent.of();
+
+            indent.indent = switch (this.indentType) {
+                case SPACE -> Indentation.getIndentSpaces(this.indent);
+                default -> Indentation.getIndentTabs(this.indent);
+            };
+
+            indent.indentFactor = 0;
+
+            return indent;
+        }
     }
 
     @Override
