@@ -64,6 +64,15 @@ public final class Indent implements Indentable {
     }
 
     /**
+     * {@link Builder} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @return {@link Builder} クラスの新しいインスタンス
+     */
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
      * 各設定値に基づいて {@link Indent} クラスの新しいインスタンスを生成するビルダークラスです。
      *
      * @author Kato Shinya
@@ -81,6 +90,12 @@ public final class Indent implements Indentable {
          * インデントタイプ
          */
         private IndentType indentType = IndentType.TAB;
+
+        /**
+         * デフォルトコンストラクタ
+         */
+        private Builder() {
+        }
 
         /**
          * インデント数を設定します。インデント数は正数を指定してください。 {@link #withIndent(int)}
