@@ -15,6 +15,7 @@
 package org.thinkit.formatter.common;
 
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -37,6 +38,35 @@ public final class Newline implements Line {
      * インデント
      */
     private Indentable indent;
+
+    /**
+     * デフォルトコンストラクタ
+     */
+    private Newline() {
+    }
+
+    /**
+     * コンストラクタ
+     *
+     * @param indent インデント
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private Newline(@NonNull Indentable indent) {
+        this.indent = indent;
+    }
+
+    /**
+     * 引数として渡された {@code indent} に基づいた {@link Newline} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param indent インデント
+     * @return {@link Newline} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    public static Line of(@NonNull Indentable indent) {
+        return new Newline(indent);
+    }
 
     /**
      * インデント数に応じた改行コードを生成し返却します。
