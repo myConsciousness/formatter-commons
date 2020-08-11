@@ -21,27 +21,27 @@ package org.thinkit.formatter.common;
  * @since 1.0
  * @version 1.0
  */
-public interface Indenter {
+public interface Indentable {
 
     /**
      * インデント数をインクリメントします。
      * <p>
-     * この {@link Indenter#increment()}
+     * この {@link Indentable#increment()}
      * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
      *
      * @return 自分自身のインスタンス
      */
-    public Indenter increment();
+    public Indentable increment();
 
     /**
      * インデント数をデクリメントします。
      * <p>
-     * この {@link Indenter#decrement()}
+     * この {@link Indentable#decrement()}
      * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
      *
      * @return 自分自身のインスタンス
      */
-    public Indenter decrement();
+    public Indentable decrement();
 
     /**
      * インデント数に応じた改行コードを生成し返却します。
