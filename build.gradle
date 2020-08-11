@@ -27,6 +27,8 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 test {
