@@ -82,12 +82,12 @@ public final class Indent implements Indentable {
         /**
          * インデント数
          */
-        private int indent = 1;
+        private int indent = 4;
 
         /**
          * インデントタイプ
          */
-        private IndentType indentType = IndentType.TAB;
+        private IndentType indentType = IndentType.SPACE;
 
         /**
          * デフォルトコンストラクタ
