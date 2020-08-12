@@ -44,6 +44,16 @@ public interface Indentable {
     public Indentable decrement();
 
     /**
+     * インデント数の状態を初期状態へリセットします。
+     * <p>
+     * この {@link Indentable#reset()}
+     * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
+     *
+     * @return 自分自身のインスタンス
+     */
+    public Indentable reset();
+
+    /**
      * インデント数分の空白またはタブを返却します。
      *
      * @return インデント数分の {@code " "} または {@code "¥t"}

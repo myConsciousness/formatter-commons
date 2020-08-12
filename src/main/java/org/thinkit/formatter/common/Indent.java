@@ -170,4 +170,10 @@ public final class Indent implements Indentable {
         this.indentFactor--;
         return this;
     }
+
+    @Override
+    public Indentable reset() {
+        this.indentFactor = 0;
+        return this;
+    }
 }
