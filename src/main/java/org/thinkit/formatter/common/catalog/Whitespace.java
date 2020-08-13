@@ -85,4 +85,20 @@ public enum Whitespace implements Catalog<Whitespace> {
 
         return false;
     }
+
+    /**
+     * {@link Whitespace} に定義されている全ての要素が持つ文字列を結合して返却します。
+     *
+     * @return {@link Whitespace} に定義されている全ての要素が持つ文字列を結合した文字列
+     */
+    public static String stringify() {
+
+        final StringBuilder sb = new StringBuilder();
+
+        for (Whitespace whitespace : Whitespace.values()) {
+            sb.append(whitespace.getWhitespace());
+        }
+
+        return sb.toString();
+    }
 }
