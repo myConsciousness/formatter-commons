@@ -14,6 +14,10 @@
 
 package org.thinkit.formatter.common;
 
+import org.thinkit.formatter.common.catalog.Whitespace;
+
+import lombok.NonNull;
+
 /**
  * トークナイザーを抽象化したインターフェースです。
  *
@@ -22,6 +26,19 @@ package org.thinkit.formatter.common;
  * @version 1.0
  */
 public interface Tokenizable {
+
+    /**
+     * 引数として指定された {@code token} に格納された値に空白が含まれているか判定します。
+     *
+     * @param token 判定対象のトークン
+     * @return 引数として指定された {@code token} に格納された値に空白が含まれている場合は {@code true} 、それ以外は
+     *         {@code false}
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    default boolean isWhitespace(@NonNull String token) {
+        return Whitespace.contains(token);
+    }
 
     /**
      * トークナイザから現在のポインタが指すトークンを取得し、トークナイザの位置をインクリメントします。
