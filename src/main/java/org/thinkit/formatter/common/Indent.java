@@ -21,6 +21,7 @@ import org.thinkit.formatter.common.catalog.IndentType;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -114,27 +115,15 @@ public final class Indent implements Indentable {
         }
 
         /**
-         * インデントタイプを空白に設定します。
+         * インデントタイプを設定します。
          * <p>
          * この {@link #toIndentSpace()}
          * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
          *
          * @return 自分自身のインスタンス
          */
-        public Builder toIndentSpace() {
-            this.indentType = IndentType.SPACE;
-            return this;
-        }
-
-        /**
-         * インデントタイプをタブに設定します。
-         * <p>
-         * この {@link #toIndentTab()} メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
-         *
-         * @return 自分自身のインスタンス
-         */
-        public Builder toIndentTab() {
-            this.indentType = IndentType.TAB;
+        public Builder withIndentType(@NonNull IndentType indentType) {
+            this.indentType = indentType;
             return this;
         }
 
