@@ -52,7 +52,12 @@ public enum Whitespace implements Catalog<Whitespace> {
     /**
      * 改ページ
      */
-    NEW_PAGE(4, "\f");
+    NEW_PAGE(4, "\f"),
+
+    /**
+     * 全角空白
+     */
+    FULL_WIDTH_SPACE(5, "　");
 
     /**
      * コード値
