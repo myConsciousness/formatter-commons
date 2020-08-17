@@ -16,13 +16,14 @@ plugins {
     id 'java'
     id 'application'
     id 'maven-publish'
+    id 'com.palantir.git-version' version '0.12.2'
 }
 
 
 publishing {
    publications {
         group 'org.thinkit.formatter.common'
-        version = System.getenv("GRADLE_PUBLISH_VERSION") ?: "1.0-SNAPSHOT"
+        version = gitVersion()
 
         gpr(MavenPublication) {
             from(components.java)
@@ -34,8 +35,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/myConsciousness/formatter-commons")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+                username = System.getenv("GITHUB_USER")
+                password = System.getenv("GITHUB_PUBLISH_TOKEN")
             }
         }
     }
@@ -46,8 +47,8 @@ repositories {
         name = "GitHubPackages"
         url = uri("https://maven.pkg.github.com/myConsciousness/dev-utils")
         credentials {
-            username = "myConsciousness"
-            password = "e14b43ba8fbbd6a1a448ba761dbb93305126aba2"
+            username = System.getenv("GITHUB_USER")
+            password = System.getenv("GITHUB_DOWNLOAD_PACKAGE_TOKEN")
         }
     }
 
@@ -62,7 +63,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
-    implementation 'org.thinkit.common:dev-utils:1.0-SNAPSHOT'
+    implementation 'org.thinkit.common:dev-utils:v1.0.0'
 }
 
 tasks.withType(JavaCompile) {
