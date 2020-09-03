@@ -14,6 +14,7 @@
 
 package org.thinkit.formatter.common;
 
+import org.thinkit.api.catalog.BiCatalog;
 import org.thinkit.formatter.common.catalog.Whitespace;
 
 import lombok.NonNull;
@@ -37,7 +38,7 @@ public interface Tokenizable {
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     default boolean isWhitespace(@NonNull String token) {
-        return Whitespace.contains(token);
+        return BiCatalog.contains(Whitespace.class, token);
     }
 
     /**

@@ -14,10 +14,9 @@
 
 package org.thinkit.formatter.common.catalog;
 
-import org.thinkit.common.catalog.Catalog;
+import org.thinkit.api.catalog.BiCatalog;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -28,7 +27,7 @@ import lombok.RequiredArgsConstructor;
  * @version 1.0
  */
 @RequiredArgsConstructor
-public enum Whitespace implements Catalog<Whitespace> {
+public enum Whitespace implements BiCatalog<Whitespace, String> {
 
     /**
      * 空白
@@ -66,44 +65,8 @@ public enum Whitespace implements Catalog<Whitespace> {
     private final int code;
 
     /**
-     * 空白
+     * タグ
      */
     @Getter
-    private final String whitespace;
-
-    /**
-     * {@link Whitespace} クラスに引数として渡された {@code token} 文字列が定義されているか判定します。
-     *
-     * @param token 判定対象のトークン
-     * @return {@link Whitespace} クラスに引数として渡された {@code token} 文字列が定義されている場合は
-     *         {@code true} 、それ以外は {@code false}
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static boolean contains(@NonNull String token) {
-
-        for (Whitespace whitespace : Whitespace.values()) {
-            if (whitespace.getWhitespace().equals(token)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * {@link Whitespace} に定義されている全ての要素が持つ文字列を結合して返却します。
-     *
-     * @return {@link Whitespace} に定義されている全ての要素が持つ文字列を結合した文字列
-     */
-    public static String stringify() {
-
-        final StringBuilder sb = new StringBuilder();
-
-        for (Whitespace whitespace : Whitespace.values()) {
-            sb.append(whitespace.getWhitespace());
-        }
-
-        return sb.toString();
-    }
+    private final String tag;
 }

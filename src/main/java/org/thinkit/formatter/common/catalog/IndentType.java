@@ -14,7 +14,7 @@
 
 package org.thinkit.formatter.common.catalog;
 
-import org.thinkit.common.catalog.Catalog;
+import org.thinkit.api.catalog.Catalog;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
