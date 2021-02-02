@@ -94,16 +94,15 @@ public final class Indent implements Indentable {
         }
 
         /**
-         * インデント数を設定します。インデント数は正数を指定してください。 {@link #withIndent(int)}
-         * メソッドに引数として負数が渡された場合は {@link IllegalNumberFoundException} が必ず実行時に発生します。
+         * インデント数を設定します。
+         * <p>
+         * インデント数は正数を指定してください。
          * <p>
          * この {@link #withIndent(int)}
          * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
          *
          * @param indent インデント数
          * @return 自分自身のインスタンス
-         *
-         * @throws IllegalNumberFoundException 引数として渡された {@code indent} が負数の場合
          */
         public Builder withIndent(int indent) {
             Preconditions.requirePositive(indent);
@@ -114,9 +113,10 @@ public final class Indent implements Indentable {
         /**
          * インデントタイプを設定します。
          * <p>
-         * この {@link #toIndentSpace()}
+         * この {@link #withIndentType(IndentType)}
          * メソッドは自分自身のインスタンスを返却するため、後続処理をメソッドチェーンの形式で行うことができます。
          *
+         * @param indentType インデント種別
          * @return 自分自身のインスタンス
          */
         public Builder withIndentType(@NonNull IndentType indentType) {
@@ -125,9 +125,9 @@ public final class Indent implements Indentable {
         }
 
         /**
-         * {@link #withIndent(int)} 、 {@link #toIndentSpace()} 、 {@link #toIndentTab()}
-         * メソッドで指定された値を基に {@link Indent} クラスの新しいインスタンスを生成し返却します。各設定メソッドを呼び出さずに
-         * {@link #build()} メソッドを呼び出した場合は初期値が優先的に使用されます。
+         * {@link #withIndent(int)} 、 {@link #withIndentType(IndentType)} メソッドで指定された値を基に
+         * {@link Indent} クラスの新しいインスタンスを生成し返却します。各設定メソッドを呼び出さずに {@link #build()}
+         * メソッドを呼び出した場合は初期値が優先的に使用されます。
          *
          * @return {@link Indent} クラスの新しいインスタンス
          */
