@@ -21,10 +21,7 @@ import lombok.NonNull;
  * {@link Formatter#format(String)} メソッドを必ず実装してください。
  *
  * @author Kato Shinya
- * @since 1.0
- * @version 1.0
- *
- * @see #format(String)
+ * @since 1.0.0
  */
 public interface Formatter {
 

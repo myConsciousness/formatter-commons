@@ -23,8 +23,7 @@ import lombok.RequiredArgsConstructor;
  * インデントタイプを管理するカタログです。
  *
  * @author Kato Shinya
- * @since 1.0
- * @version 1.0
+ * @since 1.0.0
  */
 @RequiredArgsConstructor
 public enum IndentType implements Catalog<IndentType> {

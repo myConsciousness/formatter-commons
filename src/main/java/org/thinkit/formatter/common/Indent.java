@@ -27,8 +27,7 @@ import lombok.ToString;
  * インデントの処理と状態を管理するクラスです。
  *
  * @author Kato Shinya
- * @since 1.0
- * @version 1.0
+ * @since 1.0.0
  */
 @ToString
 @EqualsAndHashCode
@@ -74,8 +73,7 @@ public final class Indent implements Indentable {
      * 各設定値に基づいて {@link Indent} クラスの新しいインスタンスを生成するビルダークラスです。
      *
      * @author Kato Shinya
-     * @since 1.0
-     * @version 1.0
+     * @since 1.0.0
      */
     public static class Builder {
 

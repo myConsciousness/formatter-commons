@@ -18,8 +18,7 @@ package org.thinkit.formatter.common.exception;
  * Thrown to indicate that an anomaly was detected during formatting.
  *
  * @author Kato Shinya
- * @since 1.0
- * @version 1.0
+ * @since 1.0.0
  */
 public final class FormattingException extends RuntimeException {
 
@@ -57,7 +56,6 @@ public final class FormattingException extends RuntimeException {
      *                {@link Throwable#getCause()} method). (A <tt>null</tt> value
      *                is permitted, and indicates that the cause is nonexistent or
      *                unknown.)
-     * @since 1.0
      */
     public FormattingException(String message, Throwable cause) {
         super(message, cause);
@@ -74,7 +72,6 @@ public final class FormattingException extends RuntimeException {
      *              {@link Throwable#getCause()} method). (A <tt>null</tt> value is
      *              permitted, and indicates that the cause is nonexistent or
      *              unknown.)
-     * @since 1.0
      */
     public FormattingException(Throwable cause) {
         super(cause);
