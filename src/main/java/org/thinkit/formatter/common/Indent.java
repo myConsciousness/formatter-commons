@@ -14,9 +14,8 @@
 
 package org.thinkit.formatter.common;
 
-import org.thinkit.common.Precondition;
+import org.thinkit.common.base.precondition.Preconditions;
 import org.thinkit.common.catalog.Indentation;
-import org.thinkit.common.exception.IllegalNumberFoundException;
 import org.thinkit.formatter.common.catalog.IndentType;
 
 import lombok.EqualsAndHashCode;
@@ -109,7 +108,7 @@ public final class Indent implements Indentable {
          * @throws IllegalNumberFoundException 引数として渡された {@code indent} が負数の場合
          */
         public Builder withIndent(int indent) {
-            Precondition.requirePositive(indent);
+            Preconditions.requirePositive(indent);
             this.indent = indent;
             return this;
         }

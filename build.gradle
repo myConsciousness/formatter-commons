@@ -1,4 +1,4 @@
- /*
+/*
  * Copyright 2020 Kato Shinya.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -12,10 +12,13 @@
  * the License.
  */
 
+import io.franzbecker.gradle.lombok.task.DelombokTask
+
 plugins {
     id 'java'
     id 'maven-publish'
-    id 'com.palantir.git-version' version '0.12.2'
+    id 'com.palantir.git-version' version '0.12.3'
+    id 'io.franzbecker.gradle-lombok' version '4.0.0'
 }
 
 publishing {
@@ -53,13 +56,7 @@ repositories {
     jcenter()
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType(Javadoc) {
-    options.encoding = "UTF-8"
-}
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 dependencies {
     implementation 'com.google.guava:guava:29.0-jre'
@@ -69,11 +66,45 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
-    implementation 'org.thinkit.common:dev-utils:v1.0.1'
-    implementation 'org.thinkit.api.catalog:catalog-api:v1.0.1'
+    implementation 'org.thinkit.common:dev-utils:v1.0.2'
+    implementation 'org.thinkit.api.catalog:catalog-api:v1.0.2'
+    implementation 'org.thinkit.common:precondition-validator:v1.1.0'
 }
 
 test {
-    // Use junit platform for unit tests
     useJUnitPlatform()
+
+    testLogging {
+        showStandardStreams true
+        events 'started', 'skipped', 'passed', 'failed'
+        exceptionFormat 'full'
+    }
+}
+
+lombok {
+    version = "1.18.16"
+}
+
+task delombok( type: DelombokTask ) {
+    description = 'Generates delomboked source.'
+
+    sourceSets.all {
+        if ( it.name != SourceSet.TEST_SOURCE_SET_NAME ) {
+            it.allJava.srcDirs.each {
+                args( it, '-d', "${buildDir}/${delombok.name}" )
+            }
+        }
+    }
+}
+
+javadoc {
+    dependsOn delombok
+
+    source = file( "${buildDir}/${delombok.name}" )
+    title = 'Formatter Commons'
+    options.links('https://docs.oracle.com/en/java/javase/13/docs/api/')
+    options.charSet("utf-8")
+    options.showFromPublic()
+    destinationDir = file('./docs')
+    failOnError = false
 }
