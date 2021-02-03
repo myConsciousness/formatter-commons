@@ -31,16 +31,22 @@ public enum IndentType implements Catalog<IndentType> {
     /**
      * 空白
      */
-    SPACE(0),
+    SPACE(0, " "),
 
     /**
      * タブ
      */
-    TAB(1);
+    TAB(1, "\t");
 
     /**
      * コード値
      */
     @Getter
     private final int code;
+
+    /**
+     * タグ
+     */
+    @Getter
+    private final String tag;
 }
