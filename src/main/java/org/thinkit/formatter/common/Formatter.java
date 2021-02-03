@@ -24,6 +24,7 @@ import lombok.NonNull;
  * @since 1.0.0
  * @deprecated
  */
+@Deprecated
 interface Formatter {
 
     /**
