@@ -15,8 +15,8 @@
 package org.thinkit.formatter.common;
 
 import org.thinkit.common.base.precondition.Preconditions;
-import org.thinkit.common.catalog.Indentation;
 import org.thinkit.formatter.common.catalog.IndentType;
+import org.thinkit.formatter.common.helper.IndentHelper;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -132,13 +132,9 @@ public final class Indent implements Indentable {
          * @return {@link Indent} クラスの新しいインスタンス
          */
         public Indentable build() {
+
             final Indent indent = Indent.of();
-
-            indent.indent = switch (this.indentType) {
-                case SPACE -> Indentation.getIndentSpaces(this.indent);
-                default -> Indentation.getIndentTabs(this.indent);
-            };
-
+            indent.indent = IndentHelper.from(this.indentType).getIndent(this.indent);
             indent.indentFactor = 0;
 
             return indent;
