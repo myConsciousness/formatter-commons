@@ -22,8 +22,9 @@ import lombok.NonNull;
  *
  * @author Kato Shinya
  * @since 1.0.0
+ * @deprecated
  */
-public interface Formatter {
+interface Formatter {
 
     /**
      * 引数として渡された {@code unformatted} に格納された文字列を整形し返却します。
